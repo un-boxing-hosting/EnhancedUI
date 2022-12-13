@@ -1,9 +1,12 @@
 ﻿using CefSharp;
 using CefSharp.OffScreen;
-using EnhancedUI.ViewModel;
+using EnhancedUI.ViewModels;
 using HarmonyLib;
 using Sandbox;
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using VRage;
 using VRage.FileSystem;
@@ -17,13 +20,27 @@ namespace EnhancedUI
     /// </summary>
     public class Main : IPlugin
     {
+        private readonly List<IWebPageViewModel> instances = new();
+
         /// <summary>
-        /// Single instance of the view model, reused for all browser instances
+        /// Called earlier than Init.
         /// </summary>
-        private readonly TerminalViewModel model = new();
+        public Main()
+        {
+            //This is the earliest point that Harmony can initialize.
+            new Harmony("EnhancedUI").PatchAll(Assembly.GetExecutingAssembly());
+        }
 
         public void Dispose()
         {
+            if (instances != null)
+            {
+                foreach (IWebPageViewModel type in instances)
+                {
+                    type.Dispose();
+                }
+            }
+
             Cef.Shutdown();
         }
 
@@ -139,14 +156,39 @@ namespace EnhancedUI
             settings.DisableGpuAcceleration();
 
             CefSharpSettings.SubprocessExitIfParentProcessClosed = true;
-#endregion
+            #endregion
             Cef.Initialize(settings, true, browserProcessHandler: null);
+
+            InitViewModels();
+        }
+
+        private void InitViewModels()
+        {
+            foreach (Type? type in GetAllTypesThatImplementInterface<IWebPageViewModel>())
+            {
+                IWebPageViewModel? instance = (IWebPageViewModel)Activator.CreateInstance(type);
+
+                instances.Add(instance);
+            }
+        }
+
+        private IEnumerable<Type> GetAllTypesThatImplementInterface<T>()
+        {
+            return Assembly.GetExecutingAssembly()
+                .GetTypes()
+                .Where(type => typeof(T).IsAssignableFrom(type) && !type.IsInterface);
         }
 
         public void Update()
         {
-            //TerminalViewModel.Update
-            model.Update();
+            if (instances != null)
+            {
+                foreach (IWebPageViewModel type in instances)
+                {
+                    type.Update();
+                }
+            }
+
         }
     }
 }

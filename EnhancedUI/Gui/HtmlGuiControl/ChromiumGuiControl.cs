@@ -20,7 +20,9 @@ namespace EnhancedUI.Gui.HtmlGuiControl
 
         private IBrowserHost? BrowserHost => chromium?.Browser.GetBrowser().GetHost();
 
-        // Returns true if the browser has been initialized already
+        /// <summary>
+        /// Returns true if the browser has been initialized already.
+        /// </summary>
         private bool IsBrowserInitialized => chromium?.Browser.IsBrowserInitialized ?? false;
 
         // True if this browser is visible and should get the input focus
@@ -161,10 +163,9 @@ namespace EnhancedUI.Gui.HtmlGuiControl
             chromium?.Navigate(url);
         }
 
-        // Removes the browser instance when ChromiumGuiControl is no longer needed.
-
-        // Returns the on-screen rectangle of the video player (browser) in pixels
-
+        /// <summary>
+        /// Returns the on-screen rectangle of the video player (browser) in pixels
+        /// </summary>
         private Rectangle GetVideoScreenRectangle()
         {
             Vector2I pos = (Vector2I)MyGuiManager.GetScreenCoordinateFromNormalizedCoordinate(GetPositionAbsoluteTopLeft());
@@ -174,7 +175,11 @@ namespace EnhancedUI.Gui.HtmlGuiControl
             return new Rectangle(pos.X, pos.Y, size.X, size.Y);
         }
 
-        // Renders the HTML document on the screen using the video player
+        /// <summary>
+        /// Renders the HTML document on the screen using the video player
+        /// </summary>
+        /// <param name="transitionAlpha">Unused.</param>
+        /// <param name="backgroundTransitionAlpha">Unused.</param>
         public override void Draw(float transitionAlpha, float backgroundTransitionAlpha)
         {
             if (!MyRenderProxy.IsVideoValid(videoId))
@@ -193,25 +198,35 @@ namespace EnhancedUI.Gui.HtmlGuiControl
                 MyVideoRectangleFitMode.AutoFit, false);
         }
 
-        // Reloads the HTML document
+        /// <summary>
+        /// Reloads the HTML document.
+        /// </summary>
         private void ReloadPage()
         {
             Navigate();
             MyLog.Default.Info($"{name} browser is reloading");
         }
 
+        /// <summary>
+        /// Opens Dev tools.
+        /// </summary>
         private void OpenWebDeveloperTools()
         {
             chromium?.Browser.ShowDevTools();
             MyLog.Default.Info($"{name} browser Developer Tools opened");
         }
 
-        // Clears the cookies from the CEF browser
+        /// <summary>
+        /// Clears the cookies from the CEF browser
+        /// </summary>
         private void ClearCookies()
         {
             Cef.GetGlobalCookieManager().DeleteCookies("", "");
         }
 
+        /// <summary>
+        /// Debugging use.
+        /// </summary>
         private void DebugDraw()
         {
             MyGuiManager.DrawBorders(GetPositionAbsoluteTopLeft(), Size, Color.White, 1);

@@ -15,6 +15,9 @@ using VRage.Plugins;
 namespace EnhancedUI
 {
     // ReSharper disable once UnusedType.Global
+    /// <summary>
+    /// Main entry point of the plugin.
+    /// </summary>
     public class Main : IPlugin
     {
         private readonly List<IWebPageViewModel> instances = new();
@@ -43,6 +46,7 @@ namespace EnhancedUI
 
         public void Init(object gameInstance)
         {
+            new Harmony("EnhancedUI").PatchAll(Assembly.GetExecutingAssembly());
             #region CEFSettings
 
             //Deletes the CEF log file so it's size does not pile up overtime.

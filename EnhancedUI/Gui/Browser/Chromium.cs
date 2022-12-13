@@ -1,5 +1,6 @@
 ﻿using CefSharp;
 using CefSharp.OffScreen;
+using EnhancedUI.ViewModel;
 using EnhancedUI.ViewModels.MainMenuViewModel;
 using EnhancedUI.ViewModels.NewGameMenuViewModel;
 using System;

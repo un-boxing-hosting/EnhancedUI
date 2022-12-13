@@ -51,6 +51,11 @@ namespace EnhancedUI.Gui.Render
             return AccessTools.Method(FactoryType, "Play");
         }
 
+        /// <summary>
+        /// Patched version of MyVideoFactory.Play
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="videoFile"></param>
         [HandleProcessCorruptedStateExceptions]
         [SecurityCritical]
         // ReSharper disable once UnusedMember.Local

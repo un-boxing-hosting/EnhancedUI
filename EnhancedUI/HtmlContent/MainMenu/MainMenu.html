@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style="background-color:grey;">
+<html lang="en" id="html" style="background-color:rgb(26, 26, 26);">
 <head>
     <meta charset="UTF-8">
     <title>Main Menu</title>
@@ -7,8 +7,10 @@
     <link rel="stylesheet" href="../common.css"/>
     <link rel="stylesheet" href="MainMenu.css"/>
     <script src="../jquery-3.6.0.min.js"></script>
+    <script src="MainMenu.js"></script>
 </head>
-<body>
+<body  onLoad="MyBackGround.play();" >
+	
 
     <button type="button" id="continueButton">Continue Game</button>
     <button type="button" id="newGameButton">New Game</button>
@@ -18,6 +20,6 @@
     <button type="button" id="characterButton">Character</button>
     <button type="button" id="exitButton">Exit</button>
 
-    <script src="MainMenu.js"></script>
+    
 </body>
 </html>

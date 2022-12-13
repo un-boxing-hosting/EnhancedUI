@@ -4,9 +4,10 @@
     font-weight: 400;
     src: local('Awesome-Font'), local('Awesome-Font-Regular'), url("space_engineers-webfont.woff") format('woff');
 }
-
+.w3-animate-fading{animation:fading 10s infinite}@keyframes fading{0%{opacity:0}50%{opacity:1}100%{opacity:0}}
 html {
-    background: transparent url("background.png");
+    background: transparent url() ;
+    
     background-size: cover;
     font-family: SpaceEngineers, serif;
     color: lightcyan;
@@ -47,12 +48,4 @@ label:hover {
 .block .property {
     margin-top: 0.5vh;
     margin-left: 2vw;
-}
-
-.bottomright {
-    position: absolute;
-    bottom: 8px;
-    right: 16px;
-    font-size: 18px;
-    background-color: rgba(0, 0, 0, 0.5);
 }

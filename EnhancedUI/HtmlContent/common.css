@@ -4,9 +4,10 @@
     font-weight: 400;
     src: local('Awesome-Font'), local('Awesome-Font-Regular'), url("space_engineers-webfont.woff") format('woff');
 }
-
+.w3-animate-fading{animation:fading 10s infinite}@keyframes fading{0%{opacity:0}50%{opacity:1}100%{opacity:0}}
 html {
-    background: transparent url("background.png");
+    background: transparent url() ;
+    animation:fading 15s infinite;
     background-size: cover;
     font-family: SpaceEngineers, serif;
     color: lightcyan;

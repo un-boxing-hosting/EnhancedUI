@@ -8,6 +8,7 @@ using Sandbox.Game.Localization;
 using Sandbox.Game.Screens;
 using Sandbox.Game.World;
 using Sandbox.Graphics.GUI;
+using avaness.PluginLoader.GUI;
 using System;
 using System.Text;
 using VRage;
@@ -155,11 +156,12 @@ namespace EnhancedUI.ViewModels.MainMenuViewModel
 
         public void NewGame()
         {
-            MyGuiSandbox.AddScreen(MyGuiSandbox.CreateScreen<MyGuiScreenNewGame>(Array.Empty<object>()));
+            MyGuiSandbox.AddScreen(new MyGuiScreenNewGame());
         }
 
         public void LoadGame()
         {
+            
             MyGuiSandbox.AddScreen(new MyGuiScreenLoadSandbox());
         }
 
@@ -220,6 +222,10 @@ namespace EnhancedUI.ViewModels.MainMenuViewModel
             //MyGuiSandbox.AddScreen(MyGuiSandbox.CreateScreen<MyGuiScreenOptionsSpace>(new object[1] { !flag }));
         }
 
+        public void Plugins(){
+            MyLog.Default.WriteLine("Opening Plugin Menu");
+             MyGuiScreenPluginConfig.OpenMenu();
+        }
         public void Character()
         {
             if (MyGameService.IsActive)

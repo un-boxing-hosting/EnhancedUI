@@ -26,6 +26,9 @@
         <Reference Include="EmptyKeys.UserInterface.Core">
           <HintPath>..\..\..\Games\steamapps\common\SpaceEngineers\Bin64\EmptyKeys.UserInterface.Core.dll</HintPath>
         </Reference>
+        <Reference Include="PluginLoader">
+          <HintPath>..\..\..\PluginLoader\PluginLoader\bin\Debug\PluginLoader.dll</HintPath>
+        </Reference>
         <Reference Include="Sandbox.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
             <SpecificVersion>False</SpecificVersion>
             <HintPath>$(SolutionDir)GameBinaries\Sandbox.Common.dll</HintPath>
@@ -136,7 +139,7 @@
     </ItemGroup>
 
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-        <Exec Command="xcopy /s /e /r /y $(TargetDir)* $(SolutionDir)GameBinaries\Plugins\Local\EnhancedUI" />
+		<Exec Command="xcopy /s /e /r /y $(TargetDir)* $(SolutionDir)GameBinaries\Plugins\Local\EnhancedUI" />
         <Exec Command="start steam://rungameid/244850" />
     </Target>
 </Project>

@@ -1,6 +1,7 @@
 using CefSharp;
 using EnhancedUI.Gui.Browser;
 using EnhancedUI.Gui.Render;
+using EnhancedUI.ViewModel;
 using Sandbox.Graphics;
 using Sandbox.Graphics.GUI;
 using System;
@@ -57,6 +58,7 @@ namespace EnhancedUI.Gui.HtmlGuiControl
                 InstallHooks();
                 hooksInstalled = true;
             }
+
         }
 
         ~ChromiumGuiControl()

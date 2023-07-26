@@ -60,7 +60,9 @@ namespace EnhancedUI.Gui.Menus
 
         public override void OnRemoved()
         {
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
             Control.OnRemoving();
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
             base.OnRemoved();
         }
     }

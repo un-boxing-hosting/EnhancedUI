@@ -1,3 +1,6 @@
+using EnhancedUI.Gui.Browser;
+using EnhancedUI.Gui.HtmlGuiControl;
+using EnhancedUI.ViewModel;
 using HarmonyLib;
 using Sandbox.Game.Gui;
 using Sandbox.Game.Localization;
@@ -30,11 +33,13 @@ namespace EnhancedUI.Gui.Terminal.ControlPanel
             page.TextEnum = MySpaceTexts.ControlPanel;
             page.TextScale = 0.7005405f;
 
-            ChromiumGuiControl? control = new ChromiumGuiControl(Content, Name)
+#pragma warning disable CS8604 // Possible null reference argument.
+            ChromiumGuiControl? control = new ChromiumGuiControl(Content, Name, "TerminalViewModel", TerminalViewModel.Instance)
             {
                 Position = new Vector2(0f, 0.005f),
                 Size = new Vector2(0.9f, 0.7f)
             };
+#pragma warning restore CS8604 // Possible null reference argument.
 
             // Adds the GUI elements to the screen
             page.Controls.Add(control);
